@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown練習サイト</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .editor {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            border-right: 1px solid #ddd;
+        }
+        .preview {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            background: #fafafa;
+            overflow-y: auto;
+        }
+        textarea {
+            width: 100%;
+            height: 90vh;
+            font-size: 16px;
+            resize: none;
+        }
+    </style>
+    <!-- marked.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="editor">
+            <h2>Markdown入力</h2>
+            <textarea id="markdown-input" placeholder="ここにMarkdown記法で入力してください"></textarea>
+        </div>
+        <div class="preview">
+            <h2>プレビュー</h2>
+            <div id="markdown-preview"></div>
+        </div>
+    </div>
+    <script>
+        const input = document.getElementById('markdown-input');
+        const preview = document.getElementById('markdown-preview');
+        input.addEventListener('input', function() {
+            preview.innerHTML = marked.parse(input.value);
+        });
+        // 初期表示
+        preview.innerHTML = marked.parse(input.value);
+    </script>
+</body>
+</html>
